@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bataille navale</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- Créer le code d'un jeu de bataille navale
+    https://fr.wikipedia.org/wiki/Bataille_navale_(jeu)
+
+    avec un plateau de 16 cases (4 colonnes, 4 lignes) et un seul bateau de 1 case
+
+    1/ le programme détermine aléatoirement quelle case du plateau contient le bateau
+        (déterminer la colonne et la ligne)
+
+    2/ Afficher le plateau de 4X4 avec chaque case représentée par un carré bleu
+
+    3/ Au clique sur une case Vérifier si la case est bien celle qui contient le bateau
+    3.1/ Si c'est la bonne case, changer sa couleur en vert
+    3.2/ Si ce n'est pas la bonne case,changer sa couleur en rouge et réexécuter l'étape 4
+
+    4/ Afficher le nombre actuelles de tentatives à chaque clique
+
+    5/ Reproposer une partie à l'utilisateur
+
+    5.1/ S'il accepte, veiller à ce que le bateau soit repositionné et toutes les cases du plateau soient à
+        nouveau masquées
+
+    +/ pour l'étape 3, commencer par verifier si l'utilisateur à déjà essayé la case, si c'est le cas, ne pas compter le coup
+    ++/ agrandir la zone en 10x10 et mettre 5 bateaux
+    +++/ faire en sorte que d'avoir des bateaux de differentes tailles:
+        - 1 de 2 cases
+        - 2 de 3 cases
+        - 1 de 4 cases
+        - 1 de 5 cases
+
+   ??? => vous n'avez pas besoin d'utliser les objets pour cet exercice
+   ??? => Si vous vous en sortez, vous pouvez les utiliser, et/ou vous inspirrer de l'exercice 21 de la serie
+   ??? => pensez bien à redecouper chaque tache et à réfléchire à ce que celà implique pour les implémenter en JS avant de foncer dans le code
+
+-->
+<style>
+    #plateau{
+        border: 5px solid black;
+        width: 600px;
+        height: 600px;
+    }
+    table{
+        border: 5px solid black;
+        width: 100%;
+        height: 100%; 
+    }
+    tr, td{
+        border: 1px solid black;
+        background-color: aqua;
+    }
+</style>
+
+<body id ="page">
+
+<div id='titre'>
+    <h1>BATAILLE NAVALE</h1>
+</div>
+<!--Création du plateau à l'aide de la balise table-->
+<div id='plateau'>
+    <table id="tables">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+</div>
+<!--Balise div pour afficher le score-->
+<div id="counter"></div>
+<!--Balise titre pour afficher les différents messages-->
+<h2 id="message"></h2>
+<!--Affichage du bouton-->
+<div id="interaction">
+    <input type="button" id="jouer" value="Jouez">
+</div>
+
+</body>
+
+<script>
+    // Récuperation de l'id table et de l'elmt td
+    //const plateau = document.getElementsById('tables');
+    const cases = document.getElementsByTagName('td');
+    // Création de variables pour afficher un nbre aléatoire entre 0 et 3, sur le row et sur le column(col)
+    let rowRandom = Math.floor(Math.random() * 4);
+    let colRandom = Math.floor(Math.random() * 4);
+    // Recupere la position de l'elmt afficher aleatoirement
+    let position = tables.rows[rowRandom].cells[colRandom];
+    //ajoute class boat
+    position.classList.add('boat');
+
+    // boucle for pour ajouter un evenmt à chaque click sur un td et vérifier avec une condition si l'element est 
+    //présent losqu'on clique sur la case
+    for (let i = 0; i < cases.length; i++) {
+        if (rowRandom === i || colRandom === i) {
+          cases[i].addEventListener('click', () => {
+            cases[i].style.backgroundColor = 'green';
+          });
+        } else {
+          cases[i].addEventListener('click', () => {
+            cases[i].style.backgroundColor = 'red';
+          });
+        }
+      }     
+
+      //fonction pour compter le nbre de clique
+      countClick = 0;
+      function clickCount (){
+        countClick++;
+        cases = countClick;
+      
+      let counter = document.getElementById('counter');
+      counter.forEach(clickCount => {
+        console.log(countClick);
+      })
+    }    
+    
+</script>
+            <!--En cours de réalisation--> 
+</html>
